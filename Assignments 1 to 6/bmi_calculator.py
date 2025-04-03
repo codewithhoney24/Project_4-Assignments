@@ -1,15 +1,19 @@
 import streamlit as st
+import pandas as pd  # Importing pandas for future data handling
 import time
 
 def calculate_bmi(weight, height):
     return weight / (height ** 2)
 
 # Streamlit UI
+st.set_page_config(page_title="BMI Calculator", page_icon="💪")
 st.title("💪 BMI Calculator")
 
-# Input fields
-weight = st.number_input("🏋️ Enter your weight (kg)", min_value=0.1, step=0.1, format="%.2f")
-height = st.number_input("📏 Enter your height (m)", min_value=0.1, step=0.01, format="%.2f")
+# Weight slider (kg)
+weight = st.slider("🏋️ Select your weight (kg)", min_value=10.0, max_value=200.0, value=70.0, step=0.1)
+
+# Height slider (m)
+height = st.slider("📏 Select your height (m)", min_value=0.5, max_value=2.5, value=1.7, step=0.01)
 
 if st.button("Calculate BMI 🧮"):
     if weight > 0 and height > 0:
@@ -41,3 +45,4 @@ if st.button("Calculate BMI 🧮"):
         """)
     else:
         st.error("🚨 Please enter valid values for weight and height.")
+
